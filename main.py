@@ -3,15 +3,16 @@ from PyPDF2 import PdfReader
 from langchain_core.prompts import PromptTemplate
 from langchain_classic.text_splitter import  RecursiveCharacterTextSplitter
 from langchain_core.output_parsers import StrOutputParser
-from dotenv import load_dotenv
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
-load_dotenv()
+
 streamlit.title("PDF Summarize")
 streamlit.markdown("Upload a PDF and get a quick AI-powered summary instantly.")
 parser = StrOutputParser()
+token = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 
 llm = HuggingFaceEndpoint(
     repo_id="Qwen/Qwen2.5-72B-Instruct",
+    huggingfacehub_api_token=token
 )
 
 model = ChatHuggingFace(llm=llm)
