@@ -8,7 +8,7 @@ from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 streamlit.title("PDF Summarize")
 streamlit.markdown("Upload a PDF and get a quick AI-powered summary instantly.")
 parser = StrOutputParser()
-token = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
+token = streamlit.secrets["HUGGINGFACEHUB_API_TOKEN"]
 
 llm = HuggingFaceEndpoint(
     repo_id="Qwen/Qwen2.5-72B-Instruct",
